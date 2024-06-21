@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energia Eólica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #e0f7fa;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            color: #00796b;
+            text-align: center;
+        }
+        h2 {
+            color: #004d40;
+        }
+        .question {
+            margin: 20px 0;
+        }
+        .result {
+            display: none;
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            background: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .intro, .quiz-section, .result {
+            text-align: center;
+        }
+        .image-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="image-container">
+        <img src="imagens/turbina1.jpg" alt="Turbinas Eólicas">
+    </div>
+    <h1>Energia Eólica</h1>
+    <div id="intro" class="intro">
+        <p>Bem-vindo ao site educativo sobre Energia Eólica! Por favor, insira seu nome para começar:</p>
+        <input type="text" id="username" placeholder="Seu nome">
+        <button onclick="startQuiz()">Iniciar</button>
+    </div>
+
+    <div id="quiz" class="quiz-section">
+        <div class="question">
+            <h2>Pergunta 1</h2>
+            <p>O que é energia eólica?</p>
+            <input type="radio" name="q1" value="errado"> Utilização de biomassa<br>
+            <input type="radio" name="q1" value="certo"> Conversão da energia do vento em eletricidade<br>
+            <input type="radio" name="q1" value="errado"> Uso de painéis solares<br>
+        </div>
+        <div class="question">
+            <h2>Pergunta 2</h2>
+            <p>Qual a capacidade instalada de energia eólica global no final de 2021?</p>
+            <input type="radio" name="q2" value="errado"> 200 GW<br>
+            <input type="radio" name="q2" value="certo"> 791 GW<br>
+            <input type="radio" name="q2" value="errado"> 1000 GW<br>
+        </div>
+        <div class="question">
+            <h2>Pergunta 3</h2>
+            <p>Qual região do Brasil é responsável por cerca de 90% da produção nacional de energia eólica?</p>
+            <input type="radio" name="q3" value="certo"> Nordeste<br>
+            <input type="radio" name="q3" value="errado"> Sudeste<br>
+            <input type="radio" name="q3" value="errado"> Sul<br>
+        </div>
+        <div class="question">
+            <h2>Pergunta 4</h2>
+            <p>Quais são os principais pontos positivos da energia eólica?</p>
+            <input type="radio" name="q4" value="certo"> Energia renovável e criação de empregos<br>
+            <input type="radio" name="q4" value="errado"> Alta emissão de carbono<br>
+            <input type="radio" name="q4" value="errado"> Depende de combustíveis fósseis<br>
+        </div>
+        <div class="question">
+            <h2>Pergunta 5</h2>
+            <p>Quais são os estados brasileiros que mais produzem energia eólica?</p>
+            <input type="radio" name="q5" value="errado"> São Paulo e Rio de Janeiro<br>
+            <input type="radio" name="q5" value="errado"> Amazonas e Pará<br>
+            <input type="radio" name="q5" value="certo"> Rio Grande do Norte, Ceará e Bahia<br>
+        </div>
+        <button onclick="showResult()">Finalizar</button>
+    </div>
+
+    <div id="result" class="result">
+        <h2>Parabéns, <span id="userNameDisplay"></span>!</h2>
+        <p>Sua pontuação é: <span id="score"></span> de 5.</p>
+        <div class="image-container">
+            <img src="imagens/turbina2.jpg" alt="Turbinas Eólicas">
+        </div>
+    </div>
+</div>
+
+<script>
+    function startQuiz() {
+        const username = document.getElementById('username').value;
+        if (username) {
+            document.getElementById('intro').style.display = 'none';
+            document.getElementById('quiz').style.display = 'block';
+        } else {
+            alert('Por favor, insira seu nome.');
+        }
+    }
+
+    function showResult() {
+        const userNameDisplay = document.getElementById('userNameDisplay');
+        const username = document.getElementById('username').value;
+        userNameDisplay.innerText = username;
+
+        let score = 0;
+        const answers = document.querySelectorAll('input[type="radio"]:checked');
+        answers.forEach(answer => {
+            if (answer.value === 'certo') {
+                score++;
+            }
+        });
+
+        document.getElementById('score').innerText = score;
+        document.getElementById('quiz').style.display = 'none';
+        document.getElementById('result').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
